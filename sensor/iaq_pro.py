@@ -13,7 +13,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     host = config.get(CONF_HOST)
     name = config.get(CONF_NAME)
 
-    _LOGGER.info("Initializing IAQ-Pro with host %s (name %s...)", host, name)
+    _LOGGER.info("Initializing IAQ-Pro with host {}.".format(host))
 
     devices = []
     iaq = IAQProDevice(name, host)
@@ -22,6 +22,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 
 class IAQProDevice(Entity):
     """Representation of an IAQ-Pro."""
+
     def __init__(self, name, host):
         """Initialize the IAQ-Pro."""
         self._state = None
@@ -57,7 +58,7 @@ class IAQProDevice(Entity):
         try:
             attr_list = self._data_json["tag"]
             for tag in attr_list:
-                if tag.startswith("Sensor-"):
+                if tag.startswith('Sensor-'):
                     continue
                 attrs[tag] = '{val} {unit}'.format(
                     val = self._data_json["content"][tag]["value"],
@@ -69,7 +70,7 @@ class IAQProDevice(Entity):
 
     def update_data(self, timeout=0.2):
         try:
-            r = requests.get("http://"+self._host+'/temp/appData.json')
+            r = requests.get('http://{}/temp/appData.json'.format(self._host))
             self._data_json = r.json()
             self._state = self._data_json["AQI"]
         except:
