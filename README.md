@@ -1,7 +1,7 @@
 # Homeassistant-MTI-IAQ-Pro
 Using MTI IAQ-Pro as custom sensor component for Home Assistant
 
-<img src="https://github.com/robmarkcole/Homeassistant-MTI-IAQ-Pro/master/images/screenshot.jpg">
+<img src="https://github.com/dendengg/Homeassistant-MTI-IAQ-Pro/master/screenshot.jpg">
 
 ## Installation
 1. **cp iaq_pro.py <config_dir>/custom_components/sensor/**
